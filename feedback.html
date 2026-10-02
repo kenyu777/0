@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f5f1" />
+    <meta name="description" content="浏览校园活动、学习机会和学生发起的信息。" />
+    <title>反馈管理 · 校园活动与机会</title>
+    <script>try { const pageTransition = sessionStorage.getItem("campus-page-transition"); if (pageTransition) { document.documentElement.dataset.pageTransition = pageTransition; sessionStorage.removeItem("campus-page-transition"); } } catch {}</script>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body data-page="reports">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="校园活动与机会首页">
+          <span class="brand-mark" aria-hidden="true">校</span>
+          <span><strong>校园活动与机会</strong><small>STUDENT OPPORTUNITIES</small></span>
+        </a>
+        <nav class="primary-nav" aria-label="主导航">
+          <a class="nav-link" data-view="all" href="/">发现活动</a>
+          <a class="nav-link" data-view="saved" href="/saved.html">我的收藏 <span id="saved-count">0</span></a>
+          <a class="nav-link" data-view="verify" href="/verify.html">待核实 <span id="verify-count">0</span></a>
+          <a class="nav-link" data-view="blocked" href="/blocked.html">已屏蔽</a>
+          <a class="nav-link" data-view="reports" href="/feedback.html">反馈管理</a>
+        </nav>
+        <a class="button button-primary header-publish" href="/publish.html">发布</a>
+      </div>
+    </header>
+
+    <main id="top" class="page-shell">
+      <div class="demo-notice home-only" role="note">
+        <span class="notice-dot" aria-hidden="true"></span>
+        <span><strong>考核模拟数据</strong> · 情境时间为 2026 年 9 月 19 日 14:00，不代表学校真实通知。</span>
+        <span class="notice-count">26 条题目材料</span>
+      </div>
+
+      <section class="hero home-only" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">CAMPUS LIFE · FALL 2026</p>
+          <h1 id="hero-title">校园里的好机会，<br /><span>值得被看见。</span></h1>
+          <p class="hero-summary">活动、学习小组、项目招募和同学发起的邀约，放在一起看清楚。</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#activity-list">看看有什么 <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-side" aria-label="信息概览">
+          <div class="stats-row">
+            <div><strong id="total-count">26</strong><span>条活动与机会</span></div>
+            <div><strong id="attention-count">0</strong><span>条信息需留意</span></div>
+          </div>
+          <div class="hero-date"><span>考核模拟时点</span><strong>09.19 <i>周六 · 14:00</i></strong></div>
+        </div>
+      </section>
+
+      <section class="freshman-banner home-only" aria-label="新生小提示">
+        <span class="freshman-icon" aria-hidden="true">✦</span>
+        <div class="freshman-copy"><p class="eyebrow">新生小提示</p><p><strong>先看时间，再看条件。</strong> 有些活动需要提前预约或名额有限，点开卡片查看原始信息和待确认细节。</p></div>
+        <a class="freshman-link" href="#activity-list">浏览活动 <span aria-hidden="true">→</span></a>
+      </section>
+
+      <section class="notice-spotlight home-only" aria-labelledby="spotlight-title">
+        <div class="spotlight-heading">
+          <span class="spotlight-icon" aria-hidden="true">↻</span>
+          <div><p class="eyebrow">信息有变化</p><h2 id="spotlight-title">跟进补充通知，别错过关键更新</h2></div>
+        </div>
+        <div id="update-links" class="update-links"></div>
+      </section>
+
+      <section id="publish-page" class="publish-page" hidden aria-labelledby="publish-title">
+        <div class="publish-page-heading">
+          <a class="back-link" href="/" aria-label="返回发现活动">‹ <span>发现活动</span></a>
+          <p class="eyebrow">FROM STUDENTS</p>
+          <h1 id="publish-title">发布信息</h1>
+          <p>把想法说清楚，邀请同学一起参与。</p>
+        </div>
+        <form id="publish-form" class="publish-form publish-page-form">
+          <label>活动名称 <input name="title" maxlength="60" required placeholder="例如：周末一起逛图书馆" /></label>
+          <div class="form-pair">
+            <label>活动类型 <select name="category"><option>兴趣交流</option><option>运动社交</option><option>学习小组</option><option>项目招募</option><option>志愿服务</option><option>讲座分享</option><option>其他</option></select></label>
+            <label>开始时间 <input name="start" type="datetime-local" /></label>
+          </div>
+          <div class="form-pair">
+            <label>地点（可待定） <input name="location" maxlength="80" placeholder="填写地点或说明待确认" /></label>
+            <label>面向对象 <input name="audience" maxlength="80" placeholder="例如：对摄影感兴趣的同学" /></label>
+          </div>
+          <label>活动介绍 <textarea name="body" rows="4" maxlength="500" required placeholder="说明活动内容、参与方式和必要条件"></textarea></label>
+          <label class="upload-field">活动图片（选填）<input id="activity-images" name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple /><small>可添加 3 张 JPG、PNG 或 WebP 图片；单张不超过 2 MB，每次发布图片总量不超过 4 MB。</small></label>
+          <p class="local-only-note"><span aria-hidden="true">ⓘ</span> 发布内容会先进入审核队列；只有审核通过后才会公开。你可以在“我的发布”查看审核状态。</p>
+          <div class="publish-form-footer"><a class="publish-history-link" href="/mine.html">我的发布 <span aria-hidden="true">→</span></a><button class="button button-primary" type="submit">提交审核</button></div>
+        </form>
+      </section>
+
+      <section id="activity-list" class="browse-section" aria-labelledby="list-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">BROWSE THE BOARD</p><h2 id="list-title">发现适合你的机会</h2></div>
+          <p id="result-count" class="result-count" aria-live="polite"></p>
+        </div>
+        <div id="discovery-controls">
+        <div class="toolbar">
+          <div class="search-control">
+            <label class="search-box">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <span class="sr-only">搜索活动</span>
+              <input id="search-input" type="search" placeholder="搜索活动、类别或关键词" autocomplete="off" />
+            </label>
+            <div class="search-suggestions" hidden><span>热门搜索</span><div id="search-suggestions" aria-label="热门搜索提示"></div></div>
+          </div>
+          <label class="select-wrap"><span class="sr-only">按来源筛选</span>
+            <select id="source-select"><option value="全部">全部来源</option><option value="school">校内信息</option><option value="department">学院发布</option><option value="student">学生发布</option></select>
+          </label>
+        </div>
+        <div class="signal-filter-wrap"><span>信息线索</span><div id="signal-filters" class="signal-filters" aria-label="按信息线索筛选"></div></div>
+        </div>
+        <div class="results-layout">
+          <div class="activity-grid" id="cards-container" aria-live="polite"></div>
+        </div>
+        <div id="empty-state" class="empty-state" hidden>
+          <span aria-hidden="true">⌕</span><h3>没有找到匹配的信息</h3><p>试试换个关键词或筛选条件。</p>
+          <button class="button button-quiet" data-action="clear-filters">清除筛选</button>
+        </div>
+      </section>
+
+      <footer class="site-footer"><span>校园活动与机会 <i>·</i> 考核模拟原型</span><span>信息以原始通知为准，题目未提供的内容不作推断。 <a href="/admin.html">审核入口</a></span></footer>
+    </main>
+
+    <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+    <aside id="detail-drawer" class="detail-drawer" aria-labelledby="detail-title" aria-hidden="true" inert>
+      <div class="drawer-top"><span class="eyebrow">机会详情</span><button class="icon-button" data-action="close-detail" aria-label="关闭详情">×</button></div>
+      <div id="detail-content"></div>
+    </aside>
+
+    <dialog id="report-dialog" class="publish-dialog report-dialog" aria-labelledby="report-title">
+      <form id="report-form" class="publish-form">
+        <div class="dialog-heading"><div><p class="eyebrow">HELP KEEP THE BOARD USEFUL</p><h2 id="report-title">举报这条信息</h2></div><button class="icon-button" type="button" data-action="close-report" aria-label="关闭">×</button></div>
+        <p id="report-target" class="dialog-intro"></p>
+        <input name="activityId" id="report-activity-id" type="hidden" />
+        <label>反馈原因 <select name="reason" required><option value="信息过期或内容不准确">信息过期或内容不准确</option><option value="骚扰、广告或与校园无关">骚扰、广告或与校园无关</option><option value="内容不安全或涉嫌欺诈">内容不安全或涉嫌欺诈</option><option value="其他情况">其他情况</option></select></label>
+        <label>补充说明（选填） <textarea name="note" rows="3" maxlength="300" placeholder="只填写帮助核实问题的信息，不要写入他人的隐私"></textarea></label>
+        <p class="local-only-note"><span aria-hidden="true">ⓘ</span> 点击后会打开邮件草稿，地址目前是占位邮箱 xxx@xxx.com；请确认邮箱客户端里的内容并手动发送。</p>
+        <div class="dialog-actions"><button class="button button-quiet" type="button" data-action="close-report">取消</button><button class="button button-dark" type="submit">通过邮件举报</button></div>
+      </form>
+    </dialog>
+    <nav class="mobile-tabbar" aria-label="主导航">
+      <a class="mobile-tab" data-view="all" href="/"><span aria-hidden="true">⌂</span>发现</a>
+      <a class="mobile-tab" data-view="saved" href="/saved.html"><span aria-hidden="true">♡</span>收藏</a>
+      <a class="mobile-tab" data-page-link="publish" href="/publish.html"><span aria-hidden="true">＋</span>发布</a>
+      <a class="mobile-tab" data-view="verify" href="/verify.html"><span aria-hidden="true">◷</span>待核实</a>
+      <a class="mobile-tab" data-view="blocked" href="/blocked.html"><span aria-hidden="true">⊘</span>已屏蔽</a>
+      <a class="mobile-tab" data-view="reports" href="/feedback.html"><span aria-hidden="true">✎</span>反馈</a>
+    </nav>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

@@ -145,3 +145,33 @@ export const sourceLabels = {
   department: "学院发布",
   student: "学生发布",
 };
+
+// Placeholder only; replace before sharing the product with real users.
+export const feedbackEmail = "xxx@xxx.com";
+
+// Classification is a prompt for careful reading, not a claim that an item is false.
+// No item in the prompt contains an unresolved, authoritative contradiction; the
+// known differences are explicit supplements and should be compared as revisions.
+export const reviewTags = {
+  "01": ["补充通知", "时间变更"],
+  "03": ["补充说明", "招募变化"],
+  "04": ["结果待核实"],
+  "05": ["报名截止提醒"],
+  "06": ["报名时间缺失"],
+  "07": ["阶段区分"],
+  "09": ["补充通知", "时间变更"],
+  "12": ["费用缺失"],
+  "13": ["截止时间未注明时刻"],
+  "14": ["录取待确认"],
+  "15": ["阶段区分", "最终截止日期未注明时刻"],
+  "16": ["报名截止时间缺失"],
+  "17": ["资料有效期提醒"],
+  "19": ["截止已过", "候补不确定"],
+  "20": ["补充说明", "招募变化"],
+  "21": ["名额有限"],
+  "22": ["地点待确认"],
+  "23": ["时间与地点不完整"],
+  "24": ["内容待核实", "风险线索"],
+  "25": ["信息不完整", "推广内容待核实"],
+  "26": ["场地容量提醒"],
+};
