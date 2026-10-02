@@ -5,3 +5,7 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+data/
+*.log
+server.stdout.log
+server.stderr.log
