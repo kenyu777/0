@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f4f0" />
+    <title>发布审核 · 校园活动与机会</title>
+    <script>try { const pageTransition = sessionStorage.getItem("campus-page-transition"); if (pageTransition) { document.documentElement.dataset.pageTransition = pageTransition; sessionStorage.removeItem("campus-page-transition"); } } catch {}</script>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/admin.js"></script>
+  </head>
+  <body class="admin-page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="返回校园活动与机会首页"><span class="brand-mark">校</span><span><strong>发布审核</strong><small>MODERATION DESK</small></span></a>
+        <a class="button button-quiet" href="/">返回活动首页</a>
+      </div>
+    </header>
+    <main class="admin-shell">
+      <section class="admin-intro">
+        <p class="eyebrow">PRIVATE REVIEW WORKSPACE</p>
+        <h1>让值得分享的信息<br /><span>安心地公开。</span></h1>
+        <p>每条学生发布先由你审核。通过后才会出现在活动列表；未通过的内容不会公开。</p>
+      </section>
+      <section id="admin-login-panel" class="admin-login-card">
+        <form id="admin-login-form">
+          <label for="admin-token">审核口令</label>
+          <input id="admin-token" name="token" type="password" autocomplete="current-password" required minlength="32" placeholder="输入服务器 ADMIN_TOKEN" />
+          <p id="admin-login-message" class="admin-message" aria-live="polite">口令只保存在当前页面内存中，关闭或刷新页面后需要重新输入。</p>
+          <button class="button button-primary" type="submit">进入审核台</button>
+        </form>
+      </section>
+      <section id="admin-workspace" class="admin-workspace" hidden>
+        <div class="admin-toolbar">
+          <div><p class="eyebrow">SUBMISSION QUEUE</p><h2>审核队列 <span id="pending-count">0</span></h2></div>
+          <div class="admin-tools"><button class="button button-quiet" id="refresh-queue" type="button">刷新</button><button class="button button-quiet" id="admin-logout" type="button">退出</button></div>
+        </div>
+        <div class="admin-filters" role="group" aria-label="筛选审核状态">
+          <button class="admin-filter is-active" data-status="pending" type="button">待审核</button>
+          <button class="admin-filter" data-status="approved" type="button">已通过</button>
+          <button class="admin-filter" data-status="rejected" type="button">未通过</button>
+        </div>
+        <div id="admin-posts" class="admin-posts" aria-live="polite"></div>
+      </section>
+      <p class="admin-security-note">此页面仅提供单管理员审核入口，不含用户账号系统。公网部署必须设置强口令，并通过 HTTPS 访问。</p>
+    </main>
+    <div id="admin-toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
